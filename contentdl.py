@@ -23,27 +23,29 @@ class course:
         self.file = file
 
     def find_md_links(self):
-        # inline_link_re = re.compile(
-        #     r'\[!(\[([^\]]+)\])\(([^)]+)\)]\(([^)]+)\)')
         inline_link_re = re.compile(
-            r'((https?):((//secasio.de)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)')
-        # links = list(inline_link_re.findall(self.file))
-        # print(links)
+            r"((https?):(//secasio.de)+[\w\d/_.-]*)") # find all files
+        # inline_link_re = re.compile(
+        #     r"((https?):(?://([^/?#]*))?([\w\d/_-]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?)") # just find files with specified extension
         with open(self.file, 'r') as f:
             links = inline_link_re.findall(f.read())
             accessed_lists = []
             for link in links:
                 accessed_lists.append(link[0])
-                # print(link[0])
             return(accessed_lists)
 
     def get_content(self):
         accessed_lists = self.find_md_links()
         for accessed_list in accessed_lists:
-            complete_name = os.path.join(output_dir, accessed_list[0])
-            response = requests.get(accessed_list[1])
-            open(complete_name, "wb").write(response.content)
-
+            local_filename = accessed_list.split('/')[-1]
+            complete_name = os.path.join(output_dir, local_filename)
+            response = requests.get(accessed_list)
+            if response.status_code == 200:
+                if not response.history:
+                    open(complete_name, "wb").write(response.content)
+                else:
+                    pass
+                
 
 if __name__ == "__main__":
     cfile = course(input_file)
