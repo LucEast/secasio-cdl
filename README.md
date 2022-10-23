@@ -1,7 +1,15 @@
 # secasio-cdl
- 
+
+Unfortunatelly the export of a book from Secasio doesn't contain the picture-files.
 This script downloads .png, .jp(e)g and .gif files from Secasio.de.\
-Unfortunatelly it can't download attachements like .pdf or .apkg (yet) because it needs login data to do so.
+It can't download attachements like .pdf or .apkg (yet) because it needs login data to do so.
+
+## Instruction
+
+First export the desired Book (Course) from `Secasio.de` as .md or .html.\
+(e.g. Betriebssysteme, Rechnernetze und verteilte Systeme (DLBIBRVS01))
+
+Then run this script, point it to the location of the .md or .html file and choose a path where the content should be written to.
 
 ## Script Setup
 
@@ -33,6 +41,13 @@ python contentdl.py
 # or
 py -3 contentdl.py
 ```
+
+# TODO
+
+[ ] Automatically replace remote links with local links in given file\
+[ ] Add threading to increase speed\
+[ ] Maybe create a GUI-version\
+
 
 All source code and documentation in this repository is licensed under the [MIT license](LICENSE).
 
