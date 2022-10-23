@@ -24,10 +24,10 @@ class course:
 
     def find_md_links(self):
         inline_link_re = re.compile(
-            r"((https?):(//secasio.de)+[\w\d/_.-]*)") # find all files
+            r"((https?):(//secasio.de)+[\w\d/_.-]*)")  # find all files
         # inline_link_re = re.compile(
         #     r"((https?):(?://([^/?#]*))?([\w\d/_-]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?)") # just find files with specified extension
-        with open(self.file, 'r') as f:
+        with open(self.file, 'r', encoding="utf-8") as f:
             links = inline_link_re.findall(f.read())
             accessed_lists = []
             for link in links:
@@ -45,7 +45,7 @@ class course:
                     open(complete_name, "wb").write(response.content)
                 else:
                     pass
-                
+
 
 if __name__ == "__main__":
     cfile = course(input_file)
