@@ -45,8 +45,9 @@ py -3 contentdl.py
 # TODO
 
 [ ] Automatically replace remote links with local links in given file\
+[ ] Add option to provide login data to download attachements\
 [ ] Add threading to increase speed\
-[ ] Maybe create a GUI-version\
+[ ] Maybe create a GUI-version
 
 
 All source code and documentation in this repository is licensed under the [MIT license](LICENSE).
